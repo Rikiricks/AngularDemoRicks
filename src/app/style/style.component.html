@@ -1,0 +1,86 @@
+<div>
+    <h1>{{title}}</h1>
+   
+    <button style="color:red;font-weight:bold;">Style1</button>
+    <br/>
+    <button [style.color]="'red'">Style2</button>
+    <br/>
+    <button [style]="{'color':'blue','font-size':'large','font-weight':'bold'}">Style3</button> 
+    <br/>
+    <button [ngStyle]="GetStyle()">Style4</button>
+  </div>
+<div>
+    <h3>{{titleForm}}</h3>
+    <input [(ngModel)]="twoWay" >
+    <br/>
+    <span>{{twoWay}}</span>
+</div>
+<div>
+  Singleton: <input type="text" [(ngModel)] = 'color' [style.background]='color'>
+</div>
+<br/> <br/>
+
+<app-series-count  [all]='allSeriesCount()' [drama]='dramaSeriesCount()' [crime]='crimeSeriesCount()'
+  (changedRadioButtonValue) = "getValueFromChildComponet($event)">
+
+</app-series-count>
+<br/>
+  <table>
+    <tr>
+      
+        <th>Name</th>
+        <th>Type</th>
+        <th>Price</th>
+        <th>Index</th>
+        <th>Is First</th>
+        <th>Is Last</th>
+        <th>Is Even</th>
+        <th>Is Odd</th>
+          
+    </tr>   
+    <ng-container *ngFor="let series of serieses;trackBy:trackByFunction;let i = index;let isFirst=first;let isLast=last;
+    let isEven=even;let isOdd = odd">
+      <tr *ngIf="radioButtonSelectedValue=='All' || radioButtonSelectedValue == series.Type" >
+        <td>
+          <a [routerLink]="['/seriesdetail', series.Name]">{{series.Name | pipeTitle:i+1}}</a>
+        </td>
+        <td>{{series.Type}}</td>
+        <td>{{series.Price | currency:'USD':true:'1.1-1'}}</td>
+        <td>{{i}}</td>
+        <td>{{isFirst}}</td>
+        <td>{{isLast}}</td>
+        <td>{{isEven}}</td>
+        <td>{{isOdd}}</td>
+      </tr>
+    </ng-container>
+  </table>
+  <div>
+    <button (click) = "loadSeries()">load Series</button>
+  </div>
+
+  
+  <br/><br/>
+  
+  
+<div>
+  <table>
+    <tr>
+    <th>UserId</th>
+    <th>Id</th>
+    <th>Title</th>
+    <th>Body</th>
+  </tr>
+  <tr *ngFor="let json of jsonChildClass">
+    <td>{{json.userId}}</td>
+    <td>{{json.id}}</td>
+    <td>{{json.title}}</td>
+    <td>{{json.body}}</td>
+  </tr>
+  </table>
+  <p [ngStyle]="{'color':'red'}">{{errorMessage}}</p>
+</div>    
+
+<div *ngIf="!subscription.closed">
+  <button type="button" class="btn btn-primary" (click) = "cancelRequest()">Cancel Request</button>
+</div>
+

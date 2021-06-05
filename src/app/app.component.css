@@ -1,0 +1,15 @@
+.btnClick {
+    color: red;
+    font-size: large;
+    font-weight: bold;
+    
+}
+
+.btnItalic{
+    font-weight: bold;
+    font-style: italic;
+}
+
+.btnBorder{
+    border: 2px solid red;    
+}

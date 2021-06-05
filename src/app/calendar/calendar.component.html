@@ -1,0 +1,60 @@
+<!-- <div class="row" style="margin-top:10px"> -->
+    <div class="panel panel-primary">
+        <div class="panel-heading"><strong>Calendar</strong></div>
+        <div class="panel-body">
+            <div style="width:100%">
+                <div style="width:30%;float:left;height:150px;background-color:#f39a9a;border: 3px solid black">
+                    <div style="width:100%;text-align:center;padding:2px;margin-top:50px">
+                        <button id="prev" class="previous round" (click)="change('Down')">&#8249;</button>
+                        &nbsp;
+                        <input type="text" style="width:20%;height:20%;" id="spnYear" class="year" [value]='currentYear' />
+                        &nbsp;
+                        <button id="next" class="next round" (click)="change('Up')">&#8250;</button>
+                    </div>
+                </div>
+                <div style="width:70%;height:150px;float:right;background-color:aquamarine;">
+                    <input type="hidden" id="selectedMonth"/>
+                    <table id="tblMonth">
+
+                         <tr *ngFor="let tr of getArray(3);let i = index;">
+                             <td *ngFor="let td of getArray(7);let j = index;let id='grp'" [class]="'grp'+i+j">
+                                 {{groups[j][i]}}
+                             </td>                           
+
+                         </tr>  
+
+                    </table>
+                </div>
+            </div>
+            <div style="width:100%">
+                <div style="width:30%;float:left;height:400px;background-color:aliceblue;">
+                    <input type="hidden" id="selectedDate" />
+                    <table id="tblDate">
+                        <tr *ngFor = "let dt of getDatesArray();let i = index;">
+                            <td *ngFor = "let d of dt;let j = index;" >
+                                {{ d < 32 ? d : ''}}
+                            </td>
+                          </tr> 
+                    </table>
+                </div>                
+                <div style="width:70%;height:400px;float:right;background-color:azure;">
+                    <table id="tblDay">
+                        <tr *ngFor="let day of getArray(7);let i = index;let isFirst=first;let isLast=last;
+                        let isEven=even;let isOdd = odd">
+
+
+                        <td [style.color]="days[j+i] == 'SUN' ? 'red': 'black'" *ngFor="let day1 of getArray(7-i);let j = index;">
+
+                        {{days[j+i]}}
+                        </td>
+
+                        <td [style.color]="days[k] == 'SUN' ? 'red': 'black'" *ngFor="let day2 of getArray(i);let k = index;">
+                            {{days[k]}}
+                        </td>
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- </div> -->
